@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-
+    scale= 1.0">
+    <title>All product-Myshoping  | Ecommerse Website Design</title>
+     <link rel="stylesheet" href="style.css">
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+           
+</head>
+<body>
+      
+	  
+	  
+      <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="images/78.jpg" width=125px">
+ 
+            </div> 
+            <nav>
+                <ul id="MenuItems"> 
+                    <li><a href="">Home</a></li>
+                    <li><a href="">Product</a></li>
+                    <li><a href="">About</a></li>
+                    <li><a href="">Contact</a></li>
+                    <li><a href="">Account</a></li>
+ 
+                </ul>
+            </nav>
+			
+            <img src="images/cart.png "width="30px" height="30px"> 
+			 <img src="images/menu.png " class="menu-icon" 
+             onclick="menutoggle()"> 
+          </div>
+         </div> 
+		 
+		 
+         <!-----Account page    -->
+		 
+		 
+         <?php
+         // define variables and set to empty values
+         $nameErr = $emailErr = "";
+         $name = $email = "";
+         
+         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if (empty($_POST["name"])) {
+               $nameErr = "Name is required";
+            }else {
+               $name = test_input($_POST["name"]);
+            }
+            
+            if (empty($_POST["email"])) {
+               $emailErr = "Email is required";
+            }else {
+               $email = test_input($_POST["email"]);
+               
+               // check if e-mail address is well-formed
+               if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                  $emailErr = "Invalid email format"; 
+               }
+            }
+            
+         }
+         
+         function test_input($data) {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
+         }
+         ?php>
+        
+         <div class="account-page">
+            <div class="'container">
+                <diV class="row">
+                <div class="col-2">
+                  <img src="images/image1.png" width="100%">   
+                </div>
+
+                <div class="col-2">
+                  <div class="form-container">
+                      <div class="form-btn">
+                    <span onclick="login()">Login</span>
+                    <span onclick="register()">Register</span>
+                    <hr id="Indicator">
+                  </div>
+                  <form id="LoginForm" method="post action ="<?php
+				  echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                        <input type="text" placeholder="Username" name="name">
+						 <span class = "error">* <?php echo $nameErr;?></span>
+                        <input type="password" placeholder="password" name="password>
+                        <button type="submit" class="btn">Login</button>
+                        <a href="">Forgot password</a>
+                    </form>
+                  <form id="RegForm">
+                        <input type="text" placeholder="Username" name="name">
+						 <span class = "error">* <?php echo $nameErr;?></span>
+                        <input type="email" placeholder="Email">
+                        <input type="password" placeholder="password">
+                        <button type="submit" class="btn">Register</button>
+                      
+                    </form>
+                    </div>
+                </div>
+                </diV>
+            </div>
+
+         </div>
+
+
+		
+	 <!------footer---->
+	 <div class="footer">
+         <div class="container">
+	   <div class="row">
+	   <div class="footer-col-1">
+	    <h3>Download our APP</h3>
+		<p>Download App for Android and ios mobile phone.</p>
+        <div class="app-logo">
+         <img src="images/play-store.png">   
+         <img src="images/app-store.png">   
+
+        </div>
+	   </div>
+	   <div class="footer-col-2">
+	       <img src="images/78.jpg" alt="">
+		   <p>our Purpose is to sustainable make the pleasure 
+               and Benefit of sports Accessibe to many.</p>
+       </div>
+        <div class="footer-col-3">
+        <h3>Useful Linkes</h3>
+        <ul>
+            <li>Coupons</li>
+            <li>Blog Post</li>
+            <li>Retuen Policy</li>
+            <li>Join Affiliate</li>
+        </ul>
+    </div>
+	   
+	     <div class="footer-col-4">
+		 <h3>follow us</h3>
+		 <ul>
+		    <li>Facebook</li>
+			<li>Twiter</li>
+			<li>Instaram</li>
+			<li>youtube</li>
+			<ul>
+	</div>
+			
+	</div>
+    <hr>
+
+	</div>
+	</div>
+    <!------js for toggle menu-------->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight="0px";
+        function menutoggle(){
+            if(MenuItems.style.maxHeight=="0px"){
+                MenuItems.style.maxHeight="200px";
+            }else{
+                MenuItems.style.maxHeight="0px";
+            }
+        }
+    </script>
+
+    <!---js for toggle form-->
+     <script>
+         var LoginForm=document.getElementById("LoginForm");
+         var  RegForm=document.getElementById("RegForm");
+        var Indicator=document.getElementById("Indicator");
+
+        function register(){
+            RegForm.style.transform="translatex(0px)";
+            LoginForm.style.transform="translatex(0px)";
+            Indicator.style.transform="translatex(100px)";
+        }
+        function login(){
+            RegForm.style.transform="translatex(300px)";
+            LoginForm.style.transform="translatex(300px)";
+            Indicator.style.transform="translatex(0px)";
+        }
+     </script>
+
+</body>
+</html>
